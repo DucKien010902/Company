@@ -11,7 +11,7 @@
     "outDir": "./dist",
     "rootDir": "./src",              // Fix lỗi: "rootDir' setting must be explicitly set"
     "baseUrl": "./", 
-    "incremental": true,
+    "incremental": false,
     "skipLibCheck": true,
     "strict": true,
     "noImplicitAny": true,
