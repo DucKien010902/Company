@@ -22,6 +22,7 @@ export const PERMISSION_CATALOG = {
     'contacts.delete',
   ],
   audit: ['audit.read'],
+  attendance: ['attendance.read'],
 } as const;
 
 export const ALL_PERMISSIONS = Object.values(PERMISSION_CATALOG).flat();

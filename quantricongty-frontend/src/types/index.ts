@@ -22,6 +22,7 @@ export type PermissionKey =
   | 'employees.update'
   | 'employees.delete'
   | 'employees.assignManager'
+  | 'attendance.read'
   | 'parties.read'
   | 'parties.create'
   | 'parties.update'
@@ -151,6 +152,78 @@ export interface Employee extends BaseEntity {
   tags: string[];
   customFields?: Record<string, unknown>;
   notes?: string;
+}
+
+export interface AttendanceUser extends BaseEntity {
+  USERID: number;
+  Badgenumber?: string;
+  Name?: string;
+  DEFAULTDEPTID?: number;
+}
+
+export interface AttendanceLog extends BaseEntity {
+  USERID: number;
+  CHECKTIME: string;
+  CHECK_DATE?: string;
+  CHECK_TIME?: string;
+  YEAR?: number;
+  MONTH?: number;
+  DAY?: number;
+  HOUR?: number;
+  MINUTE?: number;
+  SECOND?: number;
+  CHECKTYPE?: string;
+  VERIFYCODE?: number;
+  SENSORID?: string;
+  WorkCode?: string;
+  sn?: string;
+  UserExtFmt?: number;
+}
+
+export type AttendanceSlotKey = 'morningIn' | 'lunchOut' | 'lunchIn' | 'eveningOut';
+export type AttendanceStatus = 'complete' | 'partial' | 'missing' | 'noData';
+
+export interface AttendanceSlot {
+  key: AttendanceSlotKey;
+  label: string;
+  valid: boolean;
+  time?: string;
+  checkTime?: string;
+  reason?: string;
+}
+
+export interface AttendanceDay {
+  date: string;
+  userId: number;
+  user?: AttendanceUser;
+  slots: Record<AttendanceSlotKey, AttendanceSlot>;
+  extraLogs: AttendanceLog[];
+  missSessions: Array<'morning' | 'afternoon'>;
+  missCount: number;
+  workday: number;
+  status: AttendanceStatus;
+  rawLogs: AttendanceLog[];
+}
+
+export interface AttendanceMonthlySummary {
+  user: AttendanceUser;
+  month: string;
+  totalDays: number;
+  daysWithLogs: number;
+  workdays: number;
+  missCount: number;
+  exceededMonthlyMissLimit: boolean;
+  completeDays: number;
+  partialDays: number;
+  missingDays: number;
+}
+
+export interface AttendanceDailyResponse {
+  user?: AttendanceUser;
+  month?: string;
+  startDate?: string;
+  endDate?: string;
+  days: AttendanceDay[];
 }
 
 export interface ExternalParty extends BaseEntity {

@@ -1,5 +1,6 @@
 import {
   Building2,
+  CalendarClock,
   ContactRound,
   LayoutDashboard,
   Network,
@@ -50,6 +51,7 @@ export const NAV_SECTIONS: NavSection[] = [
     title: 'Nghi\u1ec7p v\u1ee5',
     items: [
       { label: 'Nh\u00e2n vi\u00ean', href: '/dashboard/hr/employees', icon: UserCircle2, permission: 'employees.read' },
+      { label: 'Ch\u1ea5m c\u00f4ng', href: '/dashboard/attendance', icon: CalendarClock, permission: 'attendance.read' },
       { label: '\u0110\u1ed1i t\u00e1c', href: '/dashboard/crm/parties', icon: Users, permission: 'parties.read' },
       { label: 'Li\u00ean h\u1ec7', href: '/dashboard/crm/contacts', icon: ContactRound, permission: 'contacts.read' },
       { label: 'S\u1ea3n ph\u1ea9m', href: '/dashboard/catalog/products', icon: ShoppingBag, note: '' },
